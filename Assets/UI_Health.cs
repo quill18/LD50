@@ -16,9 +16,15 @@ public class UI_Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Health health = King.Instance.GetComponent<Health>();
-        float h = health.GetHP();
-        float mh = health.GetMaxHP();
+        float h = 0;
+        float mh = 100;
+
+        if (King.Instance != null)
+        {
+            Health health = King.Instance.GetComponent<Health>();
+            h = health.GetHP();
+            mh = health.GetMaxHP();
+        }
 
         string s = "'Til Death: " + Mathf.CeilToInt(h) + " ("+ MoodString(h, mh) +")";
 

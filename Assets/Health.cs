@@ -19,9 +19,19 @@ public class Health : MonoBehaviour
         
     }
 
+    public void Die()
+    {
+        Debug.Log(gameObject.name + " has died.");
+        Destroy(gameObject);
+    }
+
     public void ChangeHP(float v)
     {
         currentHP = Mathf.Clamp(currentHP + v, 0f, MaxHP);
+        if(currentHP <= 0)
+        {
+            Die();
+        }
     }
 
     public float GetHP()
