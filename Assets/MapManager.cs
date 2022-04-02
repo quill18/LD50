@@ -42,6 +42,9 @@ public class MapManager : MonoBehaviour
         tileChunkIds = new byte?[MapWidth, MapHeight];
         activeTileChunks = new GameObject[MapWidth, MapHeight];
         activeTileChunkList = new List<GameObject>();
+
+        // Pre-set some chunk IDs
+        tileChunkIds[0, 0] = 0;
     }
 
     void UpdateActiveTileChunks()

@@ -8,26 +8,35 @@ public class Health : MonoBehaviour
     void Start()
     {
         currentHP = MaxHP;
+        spriteFlasher = GetComponent<SpriteFlasher>();
     }
 
     private float currentHP;
     public float MaxHP = 1f;
 
+    SpriteFlasher spriteFlasher;
+
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void Die()
     {
-        Debug.Log(gameObject.name + " has died.");
+        //Debug.Log(gameObject.name + " has died.");
         Destroy(gameObject);
     }
 
     public void ChangeHP(float v)
     {
         currentHP = Mathf.Clamp(currentHP + v, 0f, MaxHP);
+
+        if(v < 0)
+        {
+            // Took Damage
+            spriteFlasher.DoFlash();
+        }
+
         if(currentHP <= 0)
         {
             Die();

@@ -19,7 +19,12 @@ public class Weapon : MonoBehaviour
     public float Cooldown = 1;
     private float TimeSinceFired = 0;
 
-    public enum TARGETTING { NEAREST, RANDOM_SPOT, PLAYER_CENTER }
+    public float ProjectileSpeed = 10f;
+    public bool FacesVelocity;
+
+    public float LifeSpan = 10;
+
+    public enum TARGETTING { NEAREST, RANDOM_SPOT, PLAYER_CENTER, RANDOM_SPOT_SPAWN }
     public TARGETTING Targetting = TARGETTING.NEAREST;
 
 
@@ -31,27 +36,84 @@ public class Weapon : MonoBehaviour
     public void Fire()
     {
         TimeSinceFired += Time.deltaTime;
-        if(TimeSinceFired < Cooldown)
+        if (TimeSinceFired < Cooldown)
         {
             return;
         }
 
         // Do fire
+        if (Targetting == TARGETTING.NEAREST && HasValidTarget() == false)
+        {
+            return;
+        }
+
         TimeSinceFired = 0;
         GameObject playerGO = EnemyTarget.Instance.gameObject;
 
-        GameObject projGO = Instantiate(ProjectilePrefabs[ Random.Range(0, ProjectilePrefabs.Length) ]);
+        GameObject projGO = Instantiate(ProjectilePrefabs[Random.Range(0, ProjectilePrefabs.Length)]);
         WeaponProjectile projectile = projGO.GetComponent<WeaponProjectile>();
         projectile.Damage = Damage;
         projectile.NumHits = NumHits;
-        projectile.Velocity = Vector2.zero; // TODO
+        projectile.FacesVelocity = FacesVelocity;
+        projectile.LifeSpan = LifeSpan;
+
+        projGO.transform.position = playerGO.transform.position;
+        Vector2 targetSpot = playerGO.transform.position;
 
         if (Targetting == TARGETTING.PLAYER_CENTER)
         {
             // Attach "projectile" to player so it follows them
             projGO.transform.SetParent(playerGO.transform);
-            projGO.transform.localPosition = Vector3.zero;
         }
+        else if (Targetting == TARGETTING.NEAREST)
+        {
+            GameObject nearestTarget = GetNearestTarget();
+            if (nearestTarget != null)
+            {
+                targetSpot = nearestTarget.transform.position;
+            }
+        }
+        else if (Targetting == TARGETTING.RANDOM_SPOT)
+        {
+            targetSpot = (Vector2)playerGO.transform.position + ScatterOffset();
+        }
+        else if (Targetting == TARGETTING.RANDOM_SPOT_SPAWN)
+        {
+            targetSpot = projGO.transform.position = (Vector2)playerGO.transform.position + ScatterOffset();
+        }
+
+        projectile.Velocity = ((Vector2)targetSpot - (Vector2)projGO.transform.position).normalized * ProjectileSpeed;
+
+    }
+
+    Vector2 ScatterOffset()
+    {
+        return Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))) *
+            Vector3.right *
+            Random.Range(ScatterRadius / 2f, ScatterRadius);
+    }
+
+    bool HasValidTarget()
+    {
+        return Targettable.AllTargets.Count != 0;
+    }
+
+    GameObject GetNearestTarget()
+    {
+        GameObject go = null;
+        float dist = 0;
+
+        foreach(Targettable t in Targettable.AllTargets)
+        {
+            float d = (this.transform.position - t.transform.position).sqrMagnitude;
+            if(go == null || d < dist)
+            {
+                go = t.gameObject;
+                dist = d;
+            }
+        }
+
+        return go;
     }
 
     /// <summary>

@@ -35,10 +35,25 @@ public class TimeManager : MonoBehaviour
         get { return Time.deltaTime;  }
     }
 
+    public static bool IsPaused
+    {
+        get;
+        private set;
+    }
 
     // Update is called once per frame
     void Update()
     {
         ElapsedTime += Time.deltaTime;
+    }
+
+    public void Pause()
+    {
+        IsPaused = true;
+    }
+
+    public void Unpause()
+    {
+        IsPaused = false;
     }
 }
