@@ -19,6 +19,8 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TimeManager.IsPaused)
+            return;
     }
 
     public void Die()
@@ -34,7 +36,7 @@ public class Health : MonoBehaviour
         if(v < 0)
         {
             // Took Damage
-            spriteFlasher.DoFlash();
+            spriteFlasher?.DoFlash();
         }
 
         if(currentHP <= 0)

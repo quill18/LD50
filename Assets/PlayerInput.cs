@@ -15,6 +15,9 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         characterMover.DesiredDirection = new Vector2(
                 Input.GetAxisRaw("Horizontal"),
                 Input.GetAxisRaw("Vertical")

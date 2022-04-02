@@ -32,6 +32,9 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         UpdateActiveTileChunks();
     }
 

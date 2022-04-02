@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c3a37624d615c4c994882ebf9c08d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 2
+  MaxSpeed: 3
   DesiredDirection: {x: 0, y: 0}
 --- !u!50 &1943614016903324930
 Rigidbody2D:

@@ -21,7 +21,10 @@ public class SpriteFlasher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(flashTimer > 0)
+        if (TimeManager.IsPaused)
+            return;
+
+        if (flashTimer > 0)
         {
             flashTimer -= Time.deltaTime;
             sr.material.SetFloat("_FlashAmount", Mathf.Sin(flashTimer * 50f) > 0 ? 1f : 0f);

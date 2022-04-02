@@ -14,15 +14,33 @@ public class EnemyAI : MonoBehaviour
 
     float disabledMovementTime;
 
+    float enemyMaxRange = 20*20;
+
+    float timeSinceLastUpdate = 999;
+
+    float movementNoise = 45f;
+    float updateInterval = 1f;
+
     // Move towards the target
     void Update()
     {
-        if(EnemyTarget.Instance == null)
+        if (TimeManager.IsPaused)
+            return;
+
+        if (EnemyTarget.Instance == null)
         {
             return;
         }
 
-        if(disabledMovementTime > 0)
+        timeSinceLastUpdate += Time.deltaTime;
+        if(timeSinceLastUpdate < updateInterval)
+        {
+            // Only update the movement every so often.
+            return;
+        }
+        timeSinceLastUpdate = Random.Range(0f, updateInterval/2f);
+
+        if (disabledMovementTime > 0)
         {
             disabledMovementTime -= Time.deltaTime;
             return;
@@ -30,7 +48,17 @@ public class EnemyAI : MonoBehaviour
 
         Vector2 targetPos = EnemyTarget.Instance.transform.position;
 
-        characterMover.DesiredDirection = targetPos - (Vector2)this.transform.position;
+        Vector3 dirToTarget = targetPos - (Vector2)this.transform.position;
+
+        if(dirToTarget.sqrMagnitude > enemyMaxRange)
+        {
+            this.transform.position += dirToTarget * 1.75f;
+            dirToTarget = targetPos - (Vector2)this.transform.position;
+        }
+
+        dirToTarget = Quaternion.Euler(0, 0, Random.Range(-movementNoise, +movementNoise)) * dirToTarget;
+
+        characterMover.DesiredDirection = dirToTarget;
     }
 
 }

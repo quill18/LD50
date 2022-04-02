@@ -44,16 +44,21 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         ElapsedTime += Time.deltaTime;
     }
 
-    public void Pause()
+    static public void Pause()
     {
         IsPaused = true;
+        Time.timeScale = 0;
     }
 
-    public void Unpause()
+    static public void Unpause()
     {
         IsPaused = false;
+        Time.timeScale = 1;
     }
 }

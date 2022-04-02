@@ -10,6 +10,9 @@ public class DestroyAfter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         Lifespan -= Time.deltaTime;
 
         if(Lifespan <= 0)

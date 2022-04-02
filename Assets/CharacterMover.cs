@@ -21,6 +21,9 @@ public class CharacterMover : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         DesiredDirection = Vector2.ClampMagnitude(DesiredDirection, 1f);
         rb.velocity = DesiredDirection * MaxSpeed;
 

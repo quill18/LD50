@@ -16,6 +16,9 @@ public class DisableAfter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         timeActive += Time.deltaTime;
 
         if(timeActive > time)

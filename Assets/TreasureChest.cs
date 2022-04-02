@@ -15,12 +15,6 @@ public class TreasureChest : MonoBehaviour
     Weapon[] allWeapons;
     Weapon myWeapon;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerWeapons pw = collision.GetComponentInParent<PlayerWeapons>();
@@ -29,5 +23,6 @@ public class TreasureChest : MonoBehaviour
             return;
 
         // Show player a dialog box to see if they want to claim the weapon.
+        GameObject.FindObjectOfType<DialogManager>().DoDialog_TreasureChest(gameObject, myWeapon);
     }
 }

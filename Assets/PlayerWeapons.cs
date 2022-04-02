@@ -21,10 +21,32 @@ public class PlayerWeapons : MonoBehaviour
 
     public GameObject WeaponPrototypes;
 
+    public void GainWeapon(Weapon w)
+    {
+        // check if we already have, is so call Level Up
+
+        if(HasWeapon(w))
+        {
+            w.LevelUp();
+        }
+        else
+        {
+            EquippedWeapons.Add(w);
+        }
+    }
+
+    public bool HasWeapon(Weapon w)
+    {
+        return EquippedWeapons.Contains(w);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        foreach(Weapon w in EquippedWeapons)
+        if (TimeManager.IsPaused)
+            return;
+
+        foreach (Weapon w in EquippedWeapons)
         {
             w.Fire();
         }

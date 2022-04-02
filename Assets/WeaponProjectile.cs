@@ -27,6 +27,9 @@ public class WeaponProjectile : MonoBehaviour
 
     void Update()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         LifeSpan -= Time.deltaTime;
 
         if(LifeSpan <= 0)

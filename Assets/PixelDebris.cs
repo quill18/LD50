@@ -7,6 +7,9 @@ public class PixelDebris : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (TimeManager.IsPaused)
+            return;
+
         FloorY = ExplosionPoint.y + Random.Range(-0.75f, 0.25f);
 
         lifespan = Random.Range(1f, 2f);

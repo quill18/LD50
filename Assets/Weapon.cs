@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Weapon : MonoBehaviour
 {
     public string Name = "";
@@ -26,6 +25,8 @@ public class Weapon : MonoBehaviour
 
     public enum TARGETTING { NEAREST, RANDOM_SPOT, PLAYER_CENTER, RANDOM_SPOT_SPAWN }
     public TARGETTING Targetting = TARGETTING.NEAREST;
+
+    public Sprite UI_Icon;
 
 
     /// <summary>

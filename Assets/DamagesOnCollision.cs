@@ -14,11 +14,7 @@ public class DamagesOnCollision : MonoBehaviour
 
     public float BlinkDistanceOnCollision = 0;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float Damage = 1;
 
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -39,6 +35,8 @@ public class DamagesOnCollision : MonoBehaviour
             Debug.LogError("EnemyTarget doesn't actually have health?!?!?");
             return;
         }
+
+        health.ChangeHP(-Damage);
 
         if (BlinkDistanceOnCollision > 0)
         {
