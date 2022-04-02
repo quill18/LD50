@@ -12,7 +12,7 @@ public class CharacterMover : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    float MaxSpeed = 5;
+    public float MaxSpeed = 5;
     public Vector2 DesiredDirection;
 
     Rigidbody2D rb;

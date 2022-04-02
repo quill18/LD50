@@ -22,7 +22,25 @@ public class DamagesOnCollision : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(BlinkDistanceOnCollision > 0)
+        EnemyTarget et = collision.gameObject.GetComponentInParent<EnemyTarget>();
+
+        if(et == null)
+        {
+            // Collided with something that isn't our target (probably a wall).
+            return;
+        }
+
+
+        Health health = collision.gameObject.GetComponentInParent<Health>();
+
+        if (health == null)
+        {
+            // Collided with something that doesn't have health
+            Debug.LogError("EnemyTarget doesn't actually have health?!?!?");
+            return;
+        }
+
+        if (BlinkDistanceOnCollision > 0)
         {
             characterMover.BlinkAwayFromTarget(collision.transform, BlinkDistanceOnCollision);
         }

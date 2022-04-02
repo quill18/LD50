@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG Filler
+    uniqueID: 4288082371
+    locked: 0
   - name: Floor
     uniqueID: 2034066591
     locked: 0

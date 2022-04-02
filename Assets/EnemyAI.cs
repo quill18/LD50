@@ -14,10 +14,10 @@ public class EnemyAI : MonoBehaviour
 
     float disabledMovementTime;
 
-    // Move towards the king
+    // Move towards the target
     void Update()
     {
-        if(King.Instance == null)
+        if(EnemyTarget.Instance == null)
         {
             return;
         }
@@ -28,9 +28,9 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        Vector2 kingPos = King.Instance.transform.position;
+        Vector2 targetPos = EnemyTarget.Instance.transform.position;
 
-        characterMover.DesiredDirection = kingPos - (Vector2)this.transform.position;
+        characterMover.DesiredDirection = targetPos - (Vector2)this.transform.position;
     }
 
 }
