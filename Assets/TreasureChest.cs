@@ -15,6 +15,11 @@ public class TreasureChest : MonoBehaviour
     Weapon[] allWeapons;
     Weapon myWeapon;
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnTriggerEnter2D(collision.collider);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerWeapons pw = collision.GetComponentInParent<PlayerWeapons>();

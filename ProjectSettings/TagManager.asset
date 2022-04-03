@@ -15,7 +15,7 @@ TagManager:
   - Player
   - Enemies
   - PlayerProjectile
-  - 
+  - Enemies-Flying
   - 
   - 
   - 
@@ -44,6 +44,12 @@ TagManager:
   - name: Floor
     uniqueID: 2034066591
     locked: 0
+  - name: Pixel Debris
+    uniqueID: 3639844941
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Sprite UI
+    uniqueID: 603400987
     locked: 0

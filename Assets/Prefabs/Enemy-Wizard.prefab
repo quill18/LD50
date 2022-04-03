@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 28290954367672387, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.088
+      objectReference: {fileID: 0}
+    - target: {fileID: 28290954367672387, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.466
+      objectReference: {fileID: 0}
     - target: {fileID: 1943614016903324929, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1943614016903324933, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
       propertyPath: m_Name
-      value: Enemy 2
+      value: Enemy-Wizard
       objectReference: {fileID: 0}
     - target: {fileID: 1943614017655695266, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
       propertyPath: m_Sprite

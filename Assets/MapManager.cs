@@ -52,6 +52,9 @@ public class MapManager : MonoBehaviour
 
     void UpdateActiveTileChunks()
     {
+        if (EnemyTarget.Instance == null)
+            return;
+
         Vector2Int playerChunkCoord = WorldCoordToChunkCoord(
             EnemyTarget.Instance.transform.position /*+ 
             new Vector3((float)TileChunkWidth/2f,(float)TileChunkHeight/2f,0)*/);

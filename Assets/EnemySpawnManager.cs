@@ -45,6 +45,9 @@ public class EnemySpawnManager : MonoBehaviour
 
     void SpawnEnemies()
     {
+        if (EnemyTarget.Instance == null)
+            return;
+
         // Choose/Generate appropriate enemy
         GameObject enemyPrefab = EnemyPrefabs[nextEnemy++];
         if (nextEnemy >= EnemyPrefabs.Length)
