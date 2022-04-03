@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 80819481}
   - component: {fileID: 80819482}
   - component: {fileID: 80819483}
+  - component: {fileID: 80819484}
   m_Layer: 7
   m_Name: sprites-pyxel_1
   m_TagString: Untagged
@@ -479,7 +480,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 76da3c74d86099e42b5c9cad932a3218, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9068a53faafc16d4081cb2b1f45d461b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -506,6 +507,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.21}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &80819484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80819480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8bfb891cccc664a9b3e803e15399f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &85985187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,6 +1416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 452623689}
+  - component: {fileID: 452623690}
   m_Layer: 5
   m_Name: Dialog.Legacy
   m_TagString: Untagged
@@ -1430,6 +1444,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &452623690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452623688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8627650633ca84c878bef560feac34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pages: []
 --- !u!1 &483619948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,11 +2127,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -655122355
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5dd2e8be722c6624593462c182ce1265, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.40392157}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3173,6 +3200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialog_TreasureChest: {fileID: 65259524}
+  Dialog_Legacy: {fileID: 0}
 --- !u!1 &1308039144
 GameObject:
   m_ObjectHideFlags: 0
@@ -4305,6 +4333,9 @@ GameObject:
   - component: {fileID: 1795132552}
   - component: {fileID: 1795132553}
   - component: {fileID: 1795132551}
+  - component: {fileID: 1795132554}
+  - component: {fileID: 1795132555}
+  - component: {fileID: 1795132556}
   m_Layer: 7
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -4412,6 +4443,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e5d7aedc1a4c2748a161fb266add97b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1795132554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795132546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59c1a35fee4485498b2e7d853a1b863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1795132555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795132546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e271e97fb8371a45b36189180f5f149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawns:
+  - {fileID: 1639820824328347397, guid: 3c41aca5d0fdfcd428c11d88e709fb75, type: 3}
+--- !u!114 &1795132556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795132546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e8ca96134ae354438dc116270e06174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1802018481

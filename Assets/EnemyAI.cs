@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour
 
         if (EnemyTarget.Instance == null)
         {
+            characterMover.DesiredDirection = Vector2.zero;
             return;
         }
 

@@ -23,4 +23,9 @@ public class PlayerInput : MonoBehaviour
                 Input.GetAxisRaw("Vertical")
             );
     }
+
+    private void OnDestroy()
+    {
+        DialogManager.Instance.DoDialog_Legacy();
+    }
 }

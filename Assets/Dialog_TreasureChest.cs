@@ -9,9 +9,6 @@ public class Dialog_TreasureChest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(TMP_WeaponName);
-        Debug.Log(WeaponIcon);
-
     }
 
     GameObject treasureChestGO;
@@ -27,9 +24,6 @@ public class Dialog_TreasureChest : MonoBehaviour
 
     public void Popup(GameObject treasureChestGO, Weapon weapon)
     {
-        Debug.Log("Popup for: " + weapon.Name);
-        Debug.Log(TMP_WeaponName);
-
         TimeManager.Pause();
         this.treasureChestGO = treasureChestGO;
         this.weapon = weapon;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8389024724114791399}
   - component: {fileID: 8389024724114791397}
   - component: {fileID: 8389024724114791398}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: sprites-pyxel_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 8389024725626787365}
   - component: {fileID: 8389024725626787366}
   - component: {fileID: 8389024725626787364}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Treasure Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -23,7 +23,7 @@ public class EnemySpawnManager : MonoBehaviour
     float EnemyGroupRadius;
 
     float enemySpawnCooldown = 4;
-    float timeSinceSpawn = 9999999999;
+    float timeSinceSpawn = -2;
 
     int numEnemies = 12; // This is the minumum -- max is up to 50% more
 

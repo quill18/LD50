@@ -31,6 +31,14 @@ public class SpawnOnDestroy : MonoBehaviour
                 other_wp.NumHits = my_wp.NumHits;
                 other_wp.FacesVelocity = my_wp.FacesVelocity;
             }
+
+            CopySpriteOnDestroy copy = GetComponentInChildren<CopySpriteOnDestroy>();
+            if (copy != null)
+            {
+                Sprite mySprite = copy.GetComponent<SpriteRenderer>().sprite;
+                // Apply sprite to first sprite renderer on new object
+                go.GetComponentInChildren<SpriteRenderer>().sprite = mySprite;
+            }
         }
     }
 }
