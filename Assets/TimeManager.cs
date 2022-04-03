@@ -61,4 +61,5 @@ public class TimeManager : MonoBehaviour
         IsPaused = false;
         Time.timeScale = 1;
     }
+
 }

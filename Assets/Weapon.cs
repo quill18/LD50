@@ -21,9 +21,18 @@ public class Weapon : MonoBehaviour
     public float ProjectileSpeed = 10f;
     public bool FacesVelocity;
 
+    public int NumProjectiles = 1;
+    public float MultiProjectileDelay = 0.1f;
+    public float MultiProjectileSpread = 0;
+
     public float LifeSpan = 10;
 
-    public enum TARGETTING { NEAREST, RANDOM_SPOT, PLAYER_CENTER, RANDOM_SPOT_SPAWN }
+    public float ReturnToPlayerTime = 0;    // For the boomerang.
+    public float ReturnToPlayerDamping = 0.5f;
+    public float ReturnToPlayerAngle = 0;
+    public bool ReturnToPlayerSelfDestruct = false;
+
+    public enum TARGETTING { NEAREST, RANDOM_SPOT, PLAYER_CENTER, RANDOM_SPOT_SPAWN, LINEAR_THROW }
     public TARGETTING Targetting = TARGETTING.NEAREST;
 
     public Sprite UI_Icon;
@@ -49,41 +58,77 @@ public class Weapon : MonoBehaviour
         }
 
         TimeSinceFired = 0;
-        GameObject playerGO = EnemyTarget.Instance.gameObject;
 
-        GameObject projGO = Instantiate(ProjectilePrefabs[Random.Range(0, ProjectilePrefabs.Length)]);
-        WeaponProjectile projectile = projGO.GetComponent<WeaponProjectile>();
-        projectile.Damage = Damage;
-        projectile.NumHits = NumHits;
-        projectile.FacesVelocity = FacesVelocity;
-        projectile.LifeSpan = LifeSpan;
+        StartCoroutine(Fire_Coroutine());
+    }
 
-        projGO.transform.position = playerGO.transform.position;
-        Vector2 targetSpot = playerGO.transform.position;
-
-        if (Targetting == TARGETTING.PLAYER_CENTER)
+    IEnumerator Fire_Coroutine()
+    {
+        for (int i = 0; i < NumProjectiles; i++)
         {
-            // Attach "projectile" to player so it follows them
-            projGO.transform.SetParent(playerGO.transform);
-        }
-        else if (Targetting == TARGETTING.NEAREST)
-        {
-            GameObject nearestTarget = GetNearestTarget();
-            if (nearestTarget != null)
+            if(EnemyTarget.Instance == null)
             {
-                targetSpot = nearestTarget.transform.position;
+                // Player died during a firing sequence.
+                break;
+            }
+
+            GameObject playerGO = EnemyTarget.Instance.gameObject;
+
+            GameObject projGO = Instantiate(ProjectilePrefabs[Random.Range(0, ProjectilePrefabs.Length)]);
+            WeaponProjectile projectile = projGO.GetComponent<WeaponProjectile>();
+            projectile.Damage = Damage * (1f + LegacyManager.BonusDamage);
+            projectile.NumHits = NumHits;
+            projectile.FacesVelocity = FacesVelocity;
+            projectile.LifeSpan = LifeSpan;
+
+            projectile.ReturnToPlayerTime = ReturnToPlayerTime;
+            projectile.ReturnToPlayerDamping = ReturnToPlayerDamping;
+            projectile.ReturnToPlayerAngle = ReturnToPlayerAngle;
+            projectile.ReturnToPlayerSelfDestruct = ReturnToPlayerSelfDestruct;
+
+            projectile.transform.localScale = Vector3.one * Scale;
+
+            projGO.transform.position = playerGO.transform.position;
+            Vector2 targetSpot = playerGO.transform.position;
+
+            if (Targetting == TARGETTING.PLAYER_CENTER)
+            {
+                // Attach "projectile" to player so it follows them
+                projGO.transform.SetParent(playerGO.transform);
+            }
+            else if (Targetting == TARGETTING.NEAREST)
+            {
+                GameObject nearestTarget = GetNearestTarget();
+                if (nearestTarget != null)
+                {
+                    targetSpot = nearestTarget.transform.position;
+                }
+            }
+            else if (Targetting == TARGETTING.RANDOM_SPOT)
+            {
+                targetSpot = (Vector2)playerGO.transform.position + ScatterOffset();
+            }
+            else if (Targetting == TARGETTING.RANDOM_SPOT_SPAWN)
+            {
+                targetSpot = projGO.transform.position = (Vector2)playerGO.transform.position + ScatterOffset();
+            }
+            else if (Targetting == TARGETTING.LINEAR_THROW)
+            {
+                targetSpot = (Vector2)playerGO.transform.position + playerGO.GetComponent<CharacterMover>().LastNonZeroDirection;
+            }
+
+            projectile.Velocity = ((Vector2)targetSpot - (Vector2)projGO.transform.position).normalized * ProjectileSpeed;
+
+            if(MultiProjectileSpread > 0 && i > 0)
+            {
+                projectile.Velocity = Quaternion.Euler(0, 0, MultiProjectileSpread * ((i+1)/2) * ( i%2==0 ? 1 : -1 ) ) * projectile.Velocity;
+            }
+
+            if (NumProjectiles > 1 && MultiProjectileDelay > 0)
+            {
+                yield return new WaitForSeconds(MultiProjectileDelay);
             }
         }
-        else if (Targetting == TARGETTING.RANDOM_SPOT)
-        {
-            targetSpot = (Vector2)playerGO.transform.position + ScatterOffset();
-        }
-        else if (Targetting == TARGETTING.RANDOM_SPOT_SPAWN)
-        {
-            targetSpot = projGO.transform.position = (Vector2)playerGO.transform.position + ScatterOffset();
-        }
-
-        projectile.Velocity = ((Vector2)targetSpot - (Vector2)projGO.transform.position).normalized * ProjectileSpeed;
 
     }
 
@@ -106,7 +151,8 @@ public class Weapon : MonoBehaviour
 
         foreach(Targettable t in Targettable.AllTargets)
         {
-            float d = (this.transform.position - t.transform.position).sqrMagnitude;
+            //float d = (this.transform.position - t.transform.position).sqrMagnitude;
+            float d = Vector2.Distance(EnemyTarget.Instance.transform.position, t.transform.position);
             if(go == null || d < dist)
             {
                 go = t.gameObject;
@@ -124,6 +170,21 @@ public class Weapon : MonoBehaviour
     {
         Damage *= 1.1f;
     }
+
+    public static Weapon GetWeaponByName(string name)
+    {
+        Weapon[] allWeapons = GameObject.FindObjectsOfType<Weapon>();
+
+        foreach (Weapon w in allWeapons)
+        {
+            if (w.Name == name)
+                return w;
+        }
+
+        Debug.LogError("Couldn't find weapon with name: " + name);
+        return null;
+    }
+
 
 }
 

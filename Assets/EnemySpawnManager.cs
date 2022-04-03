@@ -23,7 +23,7 @@ public class EnemySpawnManager : MonoBehaviour
     float EnemyGroupRadius;
 
     float enemySpawnCooldown = 4;
-    float timeSinceSpawn = -2;
+    float timeSinceSpawn = 99;//-2;
 
     int numEnemies = 12; // This is the minumum -- max is up to 50% more
 
@@ -78,6 +78,9 @@ public class EnemySpawnManager : MonoBehaviour
 
     void SpawnEnemyAt(Vector3 pos, GameObject enemyPrefab)
     {
-        Instantiate(enemyPrefab, pos, Quaternion.identity);
+        GameObject go = Instantiate(enemyPrefab, pos, Quaternion.identity);
+
+        go.GetComponent<Health>().MaxHP += TimeManager.Instance.ElapsedTime / 10f;
+
     }
 }

@@ -56,6 +56,7 @@ public class Dialog_TreasureChest : MonoBehaviour
     public void TakeWeapon()
     {
         GameObject.FindObjectOfType<PlayerWeapons>().GainWeapon(weapon);
+        PlayerMetaData.ChestsLooted++;
         Close();
         Destroy(treasureChestGO);
     }

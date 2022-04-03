@@ -18,6 +18,6 @@ public class Rotate : MonoBehaviour
         if (TimeManager.IsPaused)
             return;
 
-        this.transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
+        this.transform.Rotate(0, 0, speed * Time.deltaTime);
     }
 }

@@ -22,10 +22,34 @@ public class PlayerInput : MonoBehaviour
                 Input.GetAxisRaw("Horizontal"),
                 Input.GetAxisRaw("Vertical")
             );
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            GetComponent<Health>().Die();
+        }
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            PlayerPrefs.DeleteAll();
+        }
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            PlayerPrefs.SetInt("Legacy Points", 999999999);
+
+        }
     }
+
+    bool isQuitting = false;
+    private void OnApplicationQuit()
+    {
+        isQuitting = true;
+    }
+
 
     private void OnDestroy()
     {
+        if (isQuitting)
+            return;
+
         DialogManager.Instance.DoDialog_Legacy();
     }
 }

@@ -7,17 +7,17 @@ public class PlayerWeapons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EquippedWeapons = new List<Weapon>();
 
         // Dummy load the "Spin Sword" weapon.
 
-        Weapon w = WeaponPrototypes.GetComponent<Weapon>();
-        Debug.Log("Weapon: " + w.Name);
-        EquippedWeapons.Add(w);
+        //Weapon w = WeaponPrototypes.GetComponent<Weapon>();
+        //Debug.Log("Weapon: " + w.Name);
+        //EquippedWeapons.Add(w);
     }
 
-    public int MaxWeapons = 4;
-    List<Weapon> EquippedWeapons;
+
+    //public int MaxWeapons = 4;
+    public List<Weapon> EquippedWeapons = new List<Weapon>();
 
     public GameObject WeaponPrototypes;
 

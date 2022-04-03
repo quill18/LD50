@@ -13,7 +13,7 @@ public class TreasureSpawnManager : MonoBehaviour
     public GameObject[] TreasureChestPrefabs;
     public GameObject TreasureArrowPrefab;
 
-    float timeBetweenChests = 30;
+    float timeBetweenChests = 20;
     float timeSinceChest = 99;
 
     float chestSpawnRadius = 50;
@@ -30,7 +30,13 @@ public class TreasureSpawnManager : MonoBehaviour
         Vector3 offset = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))) * Vector3.right * chestSpawnRadius;
         Vector3 playerPos = EnemyTarget.Instance.transform.position;
 
-        GameObject chestGO = Instantiate(TreasureChestPrefabs[Random.Range(0, TreasureChestPrefabs.Length)], playerPos + offset, Quaternion.identity);
+        SpawnChest(playerPos + offset);
+    }
+
+    public void SpawnChest(Vector2 pos)
+    {
+        GameObject chestGO = Instantiate(TreasureChestPrefabs[Random.Range(0, TreasureChestPrefabs.Length)], pos, Quaternion.identity);
         Instantiate(TreasureArrowPrefab).GetComponent<TreasureArrow>().TreasureChestTarget = chestGO;
+
     }
 }

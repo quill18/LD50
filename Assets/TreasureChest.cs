@@ -9,6 +9,13 @@ public class TreasureChest : MonoBehaviour
     {
         allWeapons ??= GameObject.FindObjectsOfType<Weapon>();
 
+        /*PlayerWeapons pw = GameObject.FindObjectOfType<PlayerWeapons>();
+
+        if(pw.EquippedWeapons.Count >= pw.MaxWeapons)
+        {
+            // chest has to contain an existing weapon.
+        }*/
+
         myWeapon = allWeapons[ Random.Range(0, allWeapons.Length) ];
     }
 

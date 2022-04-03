@@ -26,6 +26,20 @@ public class Health : MonoBehaviour
     public void Die()
     {
         //Debug.Log(gameObject.name + " has died.");
+
+        if(GetComponent<EnemyAI>() != null)
+        {
+            // That counts as a kill!
+
+            if(Random.Range(0, 1000) <= PlayerPrefs.GetInt("Chest Drop Chance", 0))
+            {
+                // Drop a random chest
+                GameObject.FindObjectOfType<TreasureSpawnManager>().SpawnChest(this.transform.position);
+            }
+
+            PlayerMetaData.EnemiesKilled++;
+        }
+
         Destroy(gameObject);
     }
 

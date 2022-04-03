@@ -10,10 +10,13 @@ public class CharacterMover : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        LastNonZeroDirection = Vector2.right;
     }
 
     public float MaxSpeed = 5;
     public Vector2 DesiredDirection;
+    public Vector2 LastNonZeroDirection;
 
     Rigidbody2D rb;
 
@@ -31,6 +34,11 @@ public class CharacterMover : MonoBehaviour
         {
             //spriteRenderer.flipX = DesiredDirection.x < 0;
             transform.localScale = new Vector3(DesiredDirection.x < 0 ? -1 : 1, 1, 1);
+        }
+
+        if(DesiredDirection.sqrMagnitude > 0)
+        {
+            LastNonZeroDirection = DesiredDirection;
         }
     }
 

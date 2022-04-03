@@ -25,16 +25,47 @@ public class WeaponProjectile : MonoBehaviour
 
     public float LifeSpan = 10;
 
+    public float ReturnToPlayerTime = 0;    // For the boomerang.
+    public float ReturnToPlayerDamping;
+    public bool ReturnToPlayerSelfDestruct;
+    public float ReturnToPlayerAngle = 0;
+    float ElapsedTime = 0;
+
+    Vector2 dampedVelocity;
+
     void Update()
     {
+        if(EnemyTarget.Instance == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (TimeManager.IsPaused)
             return;
 
-        LifeSpan -= Time.deltaTime;
+        ElapsedTime += Time.deltaTime;
 
-        if(LifeSpan <= 0)
+        if(ElapsedTime > LifeSpan)
         {
             Destroy(gameObject);
+        }
+
+        if (ReturnToPlayerTime > 0)
+        {
+            if (ElapsedTime > ReturnToPlayerTime)
+            {
+                Vector2 dirToPlayer = Quaternion.Euler(0, 0, ReturnToPlayerAngle) * (EnemyTarget.Instance.transform.position - this.transform.position);
+
+                if(ReturnToPlayerSelfDestruct && dirToPlayer.magnitude <= 0.5f)
+                {
+                    Destroy(gameObject);
+                }
+
+                dirToPlayer = dirToPlayer.normalized * Velocity.magnitude;
+
+                rb.velocity = Vector2.SmoothDamp(rb.velocity, dirToPlayer, ref dampedVelocity, ReturnToPlayerDamping);
+            }
         }
     }
 
