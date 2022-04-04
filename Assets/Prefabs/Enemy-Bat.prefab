@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.347
       objectReference: {fileID: 0}
+    - target: {fileID: 1943614016903324928, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: MaxSpeed
+      value: 3.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1943614016903324929, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -59,6 +63,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: adb4eca0c809fa24ba8419ad33725d8b, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 84fb06dcc9b14b14fa7f59a91ecdaf7c, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 62ec39a8f202b214d823c9a5759c1c53, type: 3}
     - target: {fileID: 1943614016903324933, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
       propertyPath: m_Name
       value: Enemy-Bat

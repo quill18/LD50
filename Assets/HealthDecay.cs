@@ -15,6 +15,6 @@ public class HealthDecay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health.ChangeHP(-Time.deltaTime);
+        health.ChangeHP(-Time.deltaTime, false);
     }
 }

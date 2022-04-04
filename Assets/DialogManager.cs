@@ -7,7 +7,17 @@ public class DialogManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(TutorialCheck());
+    }
+
+    IEnumerator TutorialCheck()
+    {
+        yield return null;
+        if (PlayerPrefs.GetInt("Did Tutorial", 0) == 0)
+        {
+            Dialog_Tutorial.Popup();
+            PlayerPrefs.SetInt("Did Tutorial", 1);
+        }
     }
 
     public static DialogManager Instance
@@ -26,6 +36,7 @@ public class DialogManager : MonoBehaviour
 
     public Dialog_TreasureChest Dialog_TreasureChest;
     public Dialog_Legacy Dialog_Legacy;
+    public Dialog_Tutorial Dialog_Tutorial;
 
     public void DoDialog_TreasureChest(GameObject treasureChestGO, Weapon weapon)
     {
@@ -35,6 +46,11 @@ public class DialogManager : MonoBehaviour
     public void DoDialog_Legacy()
     {
         StartCoroutine(Delayed_Legacy());
+    }
+
+    public void DoDialog_Tutorial()
+    {
+        Dialog_Tutorial.Popup();
     }
 
     IEnumerator Delayed_Legacy()

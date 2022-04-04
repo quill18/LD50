@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class Dialog_TreasureChest : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Dialog_TreasureChest : MonoBehaviour
     public GameObject ButtonGroup_LevelUp;
     public GameObject ButtonGroup_TakeWeapon;
 
+    public AudioClip[] ChestOpenSounds;
+
 
     public void Popup(GameObject treasureChestGO, Weapon weapon)
     {
@@ -34,6 +37,8 @@ public class Dialog_TreasureChest : MonoBehaviour
         bool hasWeap = GameObject.FindObjectOfType<PlayerWeapons>().HasWeapon(weapon);
         ButtonGroup_LevelUp.SetActive(hasWeap);
         ButtonGroup_TakeWeapon.SetActive(!hasWeap);
+
+        SoundManager.Play(ChestOpenSounds);
 
         GoToPage(0);
         gameObject.SetActive(true);
@@ -51,6 +56,8 @@ public class Dialog_TreasureChest : MonoBehaviour
         {
             Pages[i].SetActive(i == pageIndex);
         }
+
+        EventSystem.current.SetSelectedGameObject( GetComponentInChildren<Button>().gameObject );
     }
 
     public void TakeWeapon()

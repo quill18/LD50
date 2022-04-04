@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
 
     public GameObject[] ProjectilePrefabs;
 
+    public AudioClip[] FireSounds;
+
     public float ScatterRadius;
 
     public int NumHits = 1; // How many enemies this can damage before stopping. Pass this to projectiles.
@@ -59,6 +61,11 @@ public class Weapon : MonoBehaviour
 
         TimeSinceFired = 0;
 
+        if (NumProjectiles == 1 || MultiProjectileDelay == 0)
+        {
+            SoundManager.Play(FireSounds);
+        }
+
         StartCoroutine(Fire_Coroutine());
     }
 
@@ -70,6 +77,11 @@ public class Weapon : MonoBehaviour
             {
                 // Player died during a firing sequence.
                 break;
+            }
+
+            if (MultiProjectileDelay > 0)
+            {
+                SoundManager.Play(FireSounds);
             }
 
             GameObject playerGO = EnemyTarget.Instance.gameObject;

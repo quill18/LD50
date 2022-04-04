@@ -43,7 +43,7 @@ public class LegacyManager : MonoBehaviour
         RegisterUpgrade(new LegacyUpgrade("-10% Magic Missile Cooldown", 5, (l) => { ChangeWeaponCooldown("Magic Missile", 1f - (l.UpgradeLevel / 10f)); }));
 
         RegisterUpgrade(new LegacyUpgrade("+1 Shuriken Damage", 5, (l) => { ChangeWeaponDamage("Shuriken", l.UpgradeLevel); }));
-        RegisterUpgrade(new LegacyUpgrade("+2 Shuriken", 3, (l) => { ChangeWeaponProjectiles("Shuriken", l.UpgradeLevel * 2); }));
+        RegisterUpgrade(new LegacyUpgrade("+2 Shuriken", 4, (l) => { ChangeWeaponProjectiles("Shuriken", l.UpgradeLevel * 2); }));
         RegisterUpgrade(new LegacyUpgrade("+1 Shuriken Hits", 5, (l) => { ChangeWeaponNumHits("Shuriken", l.UpgradeLevel); }));
         RegisterUpgrade(new LegacyUpgrade("-10% Shuriken Cooldown", 5, (l) => { ChangeWeaponCooldown("Shuriken", 1f - (l.UpgradeLevel / 10f)); }));
 
@@ -69,7 +69,7 @@ public class LegacyManager : MonoBehaviour
         }
     }
 
-    void RefreshUI()
+    public void RefreshUI()
     {
         // Loop through each button to enable/disable buttons base on cost.
         foreach (KeyValuePair<string, LegacyUpgrade> upgrade in legacyUpgrades)
@@ -83,6 +83,10 @@ public class LegacyManager : MonoBehaviour
         buttonGO.transform.Find("Button Text").GetComponent<TMP_Text>().text = upgrade.Name;
         buttonGO.transform.Find("Limit Box/Limit Text").GetComponent<TMP_Text>().text = upgrade.UpgradeLevel.ToString() + "/" + upgrade.MaxLevel.ToString();
         buttonGO.transform.Find("Cost Box/Cost Text").GetComponent<TMP_Text>().text = "£" + CostToLevel(upgrade);
+
+        //Debug.Log("- checking points: " + PlayerPrefs.GetInt("Legacy Points"));
+        buttonGO.GetComponent<Button>().interactable = PlayerPrefs.GetInt("Legacy Points") >= CostToLevel(upgrade);
+
 
         Dialog_Legacy.UpdateLegacyPoints();
     }

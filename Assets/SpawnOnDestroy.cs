@@ -6,6 +6,8 @@ public class SpawnOnDestroy : MonoBehaviour
 {
     public GameObject[] Spawns;
 
+    public AudioClip[] DestroySounds;
+
     bool isQuitting = false;
     private void OnApplicationQuit()
     {
@@ -16,6 +18,8 @@ public class SpawnOnDestroy : MonoBehaviour
     {
         if (isQuitting)
             return;
+
+        SoundManager.Play(DestroySounds);
 
         foreach (GameObject spawn in Spawns)
         {
@@ -30,6 +34,7 @@ public class SpawnOnDestroy : MonoBehaviour
                 other_wp.Damage = my_wp.Damage;
                 other_wp.NumHits = my_wp.NumHits;
                 other_wp.FacesVelocity = my_wp.FacesVelocity;
+                go.transform.localScale = this.transform.localScale;
             }
 
             CopySpriteOnDestroy copy = GetComponentInChildren<CopySpriteOnDestroy>();

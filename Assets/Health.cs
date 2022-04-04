@@ -16,6 +16,9 @@ public class Health : MonoBehaviour
 
     SpriteFlasher spriteFlasher;
 
+    public AudioClip[] DeathSounds;
+    public AudioClip[] HurtSounds;
+
     // Update is called once per frame
     void Update()
     {
@@ -40,10 +43,12 @@ public class Health : MonoBehaviour
             PlayerMetaData.EnemiesKilled++;
         }
 
+        SoundManager.Play(DeathSounds);
+
         Destroy(gameObject);
     }
 
-    public void ChangeHP(float v)
+    public void ChangeHP(float v, bool playSound = true)
     {
         currentHP = Mathf.Clamp(currentHP + v, 0f, MaxHP);
 
@@ -51,6 +56,9 @@ public class Health : MonoBehaviour
         {
             // Took Damage
             spriteFlasher?.DoFlash();
+
+            if(playSound)
+                SoundManager.Play(HurtSounds);
         }
 
         if(currentHP <= 0)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -69,7 +70,8 @@ public class Dialog_Legacy : MonoBehaviour
         PlayerPrefs.SetString("Title", characterTitles[charNum]);
         PlayerPrefs.SetString("StartingWeapon", characterWeapons[charNum].Name);
 
-        Close();
+        //Close();
+        GoToPage(2);
     }
 
     public void Popup()
@@ -77,6 +79,8 @@ public class Dialog_Legacy : MonoBehaviour
         TimeManager.Pause();
 
         SetupUI();
+
+        GameObject.FindObjectOfType<LegacyManager>().RefreshUI();
 
         GoToPage(0);
         gameObject.SetActive(true);
@@ -95,6 +99,8 @@ public class Dialog_Legacy : MonoBehaviour
         {
             Pages[i].SetActive(i == pageIndex);
         }
+
+        EventSystem.current.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
     }
 
 }

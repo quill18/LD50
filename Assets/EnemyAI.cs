@@ -8,6 +8,8 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         characterMover = GetComponent<CharacterMover>();
+        timeSinceSound = Random.Range(-.5f, .5f);
+
     }
 
     CharacterMover characterMover;
@@ -21,6 +23,11 @@ public class EnemyAI : MonoBehaviour
     float movementNoise = 45f;
     float updateInterval = 1f;
 
+    public AudioClip[] RandomSounds;
+    float soundCooldown = 2f;
+    float timeSinceSound = 0;
+    float soundChance = 0.25f;
+
     // Move towards the target
     void Update()
     {
@@ -31,6 +38,15 @@ public class EnemyAI : MonoBehaviour
         {
             characterMover.DesiredDirection = Vector2.zero;
             return;
+        }
+
+        timeSinceSound += Time.deltaTime;
+        if(timeSinceSound > soundCooldown)
+        {
+            if(Random.Range(0f, 1f) < soundChance)
+                SoundManager.Play(RandomSounds);
+
+            timeSinceSound = Random.Range(-.5f, .5f);
         }
 
         timeSinceLastUpdate += Time.deltaTime;

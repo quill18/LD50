@@ -52,8 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c3a37624d615c4c994882ebf9c08d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 3
+  MaxSpeed: 3.5
   DesiredDirection: {x: 0, y: 0}
+  LastNonZeroDirection: {x: 0, y: 0}
 --- !u!50 &1943614016903324930
 Rigidbody2D:
   serializedVersion: 4
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ce60411c0f0b045b5a7087e0266533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RandomSounds: []
 --- !u!114 &1943614016903324942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +102,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHP: 1
+  DeathSounds: []
+  HurtSounds:
+  - {fileID: 8300000, guid: 4c02ecbb76d8b16409435603c646c7c3, type: 3}
+  - {fileID: 8300000, guid: a5aecc73f2ba9e24ab2cbc9d9262a44b, type: 3}
+  - {fileID: 8300000, guid: 92b9d56f915162e4e9d62a7eb9f5c1b4, type: 3}
+  - {fileID: 8300000, guid: 65b17cb2a5bb97543b3f6c046982973c, type: 3}
+  - {fileID: 8300000, guid: c365ee161ac784e479d15b4cb8293766, type: 3}
+  - {fileID: 8300000, guid: 40d9cda478efe334a9e413e7f051b9c3, type: 3}
 --- !u!114 &1943614016903324943
 MonoBehaviour:
   m_ObjectHideFlags: 0

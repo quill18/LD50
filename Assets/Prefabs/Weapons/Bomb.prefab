@@ -124,6 +124,10 @@ MonoBehaviour:
   NumHits: 0
   FacesVelocity: 0
   LifeSpan: 10
+  ReturnToPlayerTime: 0
+  ReturnToPlayerDamping: 0
+  ReturnToPlayerSelfDestruct: 0
+  ReturnToPlayerAngle: 0
 --- !u!95 &3007051064813904554
 Animator:
   serializedVersion: 3
@@ -158,3 +162,11 @@ MonoBehaviour:
   Spawns:
   - {fileID: 1354998713710868904, guid: 6f40d9ec0202ba04ea6119b9b8eeb887, type: 3}
   - {fileID: 1354998713710868904, guid: 3db2b740c4210f9459589e5cd0056ed7, type: 3}
+  DestroySounds:
+  - {fileID: 8300000, guid: 504baaedebac94242a3282def590deec, type: 3}
+  - {fileID: 8300000, guid: 72fa2da71e0c21840bc5685e53bc0d0d, type: 3}
+  - {fileID: 8300000, guid: cf20d4a62009c3c4d8ca5862b8733a16, type: 3}
+  - {fileID: 8300000, guid: 8f420619ea353574b890634b52f3afe4, type: 3}
+  - {fileID: 8300000, guid: 72fa2da71e0c21840bc5685e53bc0d0d, type: 3}
+  - {fileID: 8300000, guid: cf20d4a62009c3c4d8ca5862b8733a16, type: 3}
+  - {fileID: 8300000, guid: 8f420619ea353574b890634b52f3afe4, type: 3}

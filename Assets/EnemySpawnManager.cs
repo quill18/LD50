@@ -81,6 +81,7 @@ public class EnemySpawnManager : MonoBehaviour
         GameObject go = Instantiate(enemyPrefab, pos, Quaternion.identity);
 
         go.GetComponent<Health>().MaxHP += TimeManager.Instance.ElapsedTime / 10f;
+        go.GetComponent<DamagesOnCollision>().Damage += TimeManager.Instance.ElapsedTime / 20f;
 
     }
 }

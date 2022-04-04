@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.383
       objectReference: {fileID: 0}
+    - target: {fileID: 1943614016903324928, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: MaxSpeed
+      value: 3.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1943614016903324929, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -59,6 +63,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 26695a6dd8d34264c8c86fc3fafb43be, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 988c518459af07f44a036de3a3bd6e33, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: d75545424c600e246bb49cdcb3306dd4, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0cf76c1533682c8489431181a9cf6cbd, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 26695a6dd8d34264c8c86fc3fafb43be, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 988c518459af07f44a036de3a3bd6e33, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: d75545424c600e246bb49cdcb3306dd4, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 26695a6dd8d34264c8c86fc3fafb43be, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 988c518459af07f44a036de3a3bd6e33, type: 3}
+    - target: {fileID: 1943614016903324931, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
+      propertyPath: RandomSounds.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: d75545424c600e246bb49cdcb3306dd4, type: 3}
     - target: {fileID: 1943614016903324933, guid: c9ed71e36c718394fa190c6130ef9c73, type: 3}
       propertyPath: m_Name
       value: Enemy-Ghost

@@ -14,13 +14,16 @@ public class TreasureSpawnManager : MonoBehaviour
     public GameObject TreasureArrowPrefab;
 
     float timeBetweenChests = 20;
-    float timeSinceChest = 99;
+    float timeSinceChest = 19;
 
     float chestSpawnRadius = 50;
 
     // Update is called once per frame
     void Update()
     {
+        if (EnemyTarget.Instance == null)
+            return;
+
         timeSinceChest += Time.deltaTime;
         if (timeSinceChest < timeBetweenChests)
             return;

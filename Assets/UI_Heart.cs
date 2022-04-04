@@ -13,11 +13,20 @@ public class UI_Heart : MonoBehaviour
 
     public Image HeartImage;
     Health playerHealth;
+    public GameObject ImminentDeath;
 
     // Update is called once per frame
     void Update()
     {
+        if(EnemyTarget.Instance == null)
+        {
+            ImminentDeath.SetActive(false);
+            return;
+        }
+
         float healthPercentage = playerHealth == null ? 0 : playerHealth.GetHP() / playerHealth.GetMaxHP();
+
+        ImminentDeath.SetActive( playerHealth.GetHP() <= 9);
 
         HeartImage.fillAmount = healthPercentage;
     }
