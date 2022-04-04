@@ -107,9 +107,20 @@ public class MapManager : MonoBehaviour
                 0
             );
 
+        /*Vector3 midpoint = newChunk.transform.position + new Vector3(5, 5, 0);
+        newChunk.transform.RotateAround(midpoint, Vector3.forward, 90);*/
+
         activeTileChunks[Modulo(x, MapWidth), Modulo(y, MapHeight)] = newChunk;
         activeTileChunkList.Add(newChunk);
     }
+
+    /*void RotateAroundPoint(Transform aTrans, Vector3 aPoint, Vector3 aAxis, float aAngle)
+    {
+        var dir = aTrans.position - aPoint;
+        var q = Quaternion.AngleAxis(aAngle, aAxis);
+        aTrans.position = aPoint + q * dir;
+        aTrans.rotation = q * aTrans.rotation;
+    }*/
 
     GameObject GetChunkAt(int x, int y)
     {

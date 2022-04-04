@@ -18,4 +18,9 @@ public class MusicManager : MonoBehaviour
             audioSource.Play();
         }
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

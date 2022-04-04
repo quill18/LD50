@@ -87,6 +87,8 @@ public class LegacyManager : MonoBehaviour
         //Debug.Log("- checking points: " + PlayerPrefs.GetInt("Legacy Points"));
         buttonGO.GetComponent<Button>().interactable = PlayerPrefs.GetInt("Legacy Points") >= CostToLevel(upgrade);
 
+        if (upgrade.UpgradeLevel >= upgrade.MaxLevel)
+            buttonGO.GetComponent<Button>().interactable = false;
 
         Dialog_Legacy.UpdateLegacyPoints();
     }
@@ -97,6 +99,9 @@ public class LegacyManager : MonoBehaviour
 
         int cost = CostToLevel(upgrade);
         int currentPoints = PlayerPrefs.GetInt("Legacy Points");
+
+        if (upgrade.UpgradeLevel >= upgrade.MaxLevel)
+            return;
 
         if (cost > currentPoints)
         {

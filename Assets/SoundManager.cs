@@ -29,6 +29,6 @@ public class SoundManager : MonoBehaviour
         if (clip == null)
             return;
 
-        AudioSource.PlayClipAtPoint(clip, Vector3.zero);
+        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, 0.2f);
     }
 }
